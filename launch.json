@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb)Launch",
+            "type": "cppdbg",//调试器名称
+            "request": "launch",//有launch和attach两种方式，前者直接运行，后者将程序绑定到之前启动的程序
+            "program": "${workspaceFolder}/devel/lib/myros/myros_node",//这里需要写生成的二进制路径
+            "args": [],//添加参数
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "build",//在调试前先build
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

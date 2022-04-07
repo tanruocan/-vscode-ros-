@@ -1,0 +1,35 @@
+{
+	"tasks": [
+		{
+			"type": "shell",//任务的类型，可设置成shell和process。前者将任务当成命令，启动终端运行，后者直接运行。
+			"label": "build",//就是一个名字，你按下快捷键的时候用以区分不同task
+			"command": "source /opt/ros/melodic/setup.bash && catkin_make  -DCMAKE_BUILD_TYPE=Debug",//实际运行的命令
+			"args": [],//运行的参数，这里需要注意的是，如果需要进行调试，需要设置为Debug模式，并且要检查相应package中的CMakeLists.txt中有没有设置成Release模式，CMake中txt的设置优先级是最高的。比如我们的驱动就设置Release，所以即使你在这里怎么设置都没用的。
+			"problemMatcher": [//错误分析器，可以分析到输出的信息中有哪些错误并显示
+				"$catkin-gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "shell",
+			"label": "clean",
+			"command": "source /opt/ros/melodic/setup.bash && catkin_make clean",
+			"args": [],
+			"problemMatcher": [
+				"$catkin-gcc"
+			]
+		},
+		{
+			"label": "release",
+			"type": "shell",
+			"args": [],
+			"command": "source /opt/ros/melodic/setup.bash && catkin_make  -DCMAKE_BUILD_TYPE=Release",//release下不能调试
+			"problemMatcher": [
+				"$catkin-gcc"
+			]
+		}
+	]
+}
